@@ -20,7 +20,7 @@ namespace WebhookSpammer.Config
         
         
         /*
-        This is only there to bypass the Webkkok Protector.
+        This is only there to bypass the Webhook Protector from Rdimo.
         Spam it!
         https://github.com/Rdimo/Discord-Webhook-Protector 
         */
