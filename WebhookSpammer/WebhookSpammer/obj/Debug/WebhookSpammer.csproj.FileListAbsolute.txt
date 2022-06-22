@@ -1,0 +1,7 @@
+C:\Users\none\Documents\GitHub\WebhookSpammer\WebhookSpammer\WebhookSpammer\bin\Debug\WebhookSpammer.exe
+C:\Users\none\Documents\GitHub\WebhookSpammer\WebhookSpammer\WebhookSpammer\bin\Debug\WebhookSpammer.pdb
+C:\Users\none\Documents\GitHub\WebhookSpammer\WebhookSpammer\WebhookSpammer\obj\Debug\WebhookSpammer.csproj.AssemblyReference.cache
+C:\Users\none\Documents\GitHub\WebhookSpammer\WebhookSpammer\WebhookSpammer\obj\Debug\WebhookSpammer.csproj.SuggestedBindingRedirects.cache
+C:\Users\none\Documents\GitHub\WebhookSpammer\WebhookSpammer\WebhookSpammer\obj\Debug\WebhookSpammer.csproj.CoreCompileInputs.cache
+C:\Users\none\Documents\GitHub\WebhookSpammer\WebhookSpammer\WebhookSpammer\obj\Debug\WebhookSpammer.exe
+C:\Users\none\Documents\GitHub\WebhookSpammer\WebhookSpammer\WebhookSpammer\obj\Debug\WebhookSpammer.pdb
