@@ -7,10 +7,10 @@ using System.Xml;
 
 namespace WebhookSpammer.Config
 {
-    public class NONELoggs
+    public static class NONELoggs
     {
         private static List<string> LogsQury = new List<string>();
-        private static Thread Logs = new Thread(_WriteItThread);
+        private static Thread _Logs = new Thread(_WriteItThread);
         private static bool StopThread = true;
         private static bool StopFinnished = true;
         
@@ -18,27 +18,27 @@ namespace WebhookSpammer.Config
         public static void WriteState(string Log)
         {
             WriteLogToFile(Log);
-        }
+        } 
+      
         
         // Init Logging
-        public static void InitLogging()
-        {
-            Logs.Start();
-        }
+        public static void InitLogging() =>  _Logs.Start();
+      
         
         // End Logging
         public static void Dispose_InitLogging()
         {
-            Logs.Start();
+            StopThread = false;
             while (StopFinnished)
             {
                 
             }
+            
         }
 
         private static void WriteLogToFile(string data)
         {
-            string log = $"[{DateTime.Now.ToString("hh:mm:ss t z")}] Output: {data} {Environment.NewLine}";
+            string log = $"[{DateTime.Now.ToString("HH:m:s")}] Output: {data} {Environment.NewLine}";
             LogsQury.Add(log);
         }
 
@@ -46,30 +46,30 @@ namespace WebhookSpammer.Config
         private static void _WriteItThread()
         {
             string time = DateTime.Now.ToString("t"); // Current Day 
-            while (StopThread)
+            if (!File.Exists($"./logs.txt"))
+            {
+                File.Create($"./logs.txt"); // Create File
+                File.WriteAllText($"./logs.txt", "TT");
+            }
+            while (StopThread == true)
             {
                 try
                 {
+                    Thread.Sleep(500);
                     // Look for if Log Exist
-                    if (!File.Exists($"./logs_{time}"))
-                    {
-                        File.Create($"./logs_{time}"); // Create File
-                        Thread.Sleep(500); // Sleep Thread 
-                    }
-
                     if (LogsQury.Count > 0) // Check how many Logs in Cash
                     {
                         foreach (string log in LogsQury) //Write All
                         {
-                            File.AppendAllText($"./logs_{time}", log);
+                            File.AppendAllText($"./logs.txt", log);
                         }
-                    
+                        LogsQury.Clear();
                     }
                 }
                 catch
                 {
+                    Console.WriteLine("ERROR LOGS");
                     Thread.Sleep(100);
-                    continue;
                 }
                 Thread.Sleep(50); // Wait to Finish
             }

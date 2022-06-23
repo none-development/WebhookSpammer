@@ -13,29 +13,37 @@
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <LangVersion>7.3</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
+        <PlatformTarget>x64</PlatformTarget>
+        <DebugSymbols>false</DebugSymbols>
+        <DebugType>none</DebugType>
+        <Optimize>true</Optimize>
         <OutputPath>bin\Debug\</OutputPath>
         <DefineConstants>DEBUG;TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+        <Prefer32bit>false</Prefer32bit>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
+        <PlatformTarget>x64</PlatformTarget>
         <DebugType>pdbonly</DebugType>
         <Optimize>true</Optimize>
         <OutputPath>bin\Release\</OutputPath>
         <DefineConstants>TRACE</DefineConstants>
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
+        <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+        <Prefer32bit>false</Prefer32bit>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="Costura, Version=5.8.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
           <HintPath>..\packages\Costura.Fody.5.8.0-alpha0098\lib\netstandard1.0\Costura.dll</HintPath>
+        </Reference>
+        <Reference Include="CSharpDiscordWebhook">
+          <HintPath>..\packages\CSharpDiscordWebhook.2.2.0\lib\net48\CSharpDiscordWebhook.dll</HintPath>
         </Reference>
         <Reference Include="CSharpDiscordWebhook, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
           <HintPath>..\packages\CSharpDiscordWebhook.2.2.0\lib\net48\CSharpDiscordWebhook.dll</HintPath>
@@ -43,12 +51,16 @@
         <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
           <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
         </Reference>
+        <Reference Include="Microsoft.CSharp" />
         <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
           <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
         </Reference>
         <Reference Include="mscorlib" />
         <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
           <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+        </Reference>
+        <Reference Include="Otp.NET, Version=1.2.2.0, Culture=neutral, PublicKeyToken=38a48df817e173a6, processorArchitecture=MSIL">
+          <HintPath>..\packages\Otp.NET.1.2.2\lib\net45\Otp.NET.dll</HintPath>
         </Reference>
         <Reference Include="RestSharp, Version=108.0.2.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
           <HintPath>..\packages\RestSharp.108.0.2-alpha.0.1\lib\netstandard2.0\RestSharp.dll</HintPath>
@@ -166,12 +178,11 @@
         <Compile Include="Config\IniCreator.cs" />
         <Compile Include="Config\INISystem.cs" />
         <Compile Include="Config\NONELoggs.cs" />
-        <Compile Include="functions\discord\SendWebhool.cs" />
+        <Compile Include="functions\discord\WebhookSpammer.cs" />
+        <Compile Include="functions\wehookprotector\ProxyScraper\Srcaper.cs" />
+        <Compile Include="functions\wehookprotector\RequestSpammer.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-    </ItemGroup>
-    <ItemGroup>
-      <Folder Include="functions\wehookprotector" />
     </ItemGroup>
     <ItemGroup>
       <None Include="App.config" />

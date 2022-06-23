@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using static WebhookSpammer.Config.NONELoggs;
 
 namespace WebhookSpammer.Config
 {
@@ -32,29 +33,44 @@ namespace WebhookSpammer.Config
         public int ReadInt(string Key, string Section = null)
         {
             var RetVal = new StringBuilder(255);
+            int Value = 0;
             GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
-            int Value = int.Parse(RetVal.ToString());
+            try
+            {
+                Value = int.Parse(RetVal.ToString());
+            }
+            catch
+            {
+                WriteState($"Error Read Int in Key: {Key}");
+            }
+           
             return Value;
         }
         
-        public void Write(string Key, string Value, string Section = null)
+        public bool ReadBool(string Key, string Section = null)
         {
-            WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
+            var RetVal = new StringBuilder(255);
+            bool Value = false;
+            GetPrivateProfileString(Section ?? EXE, Key, "", RetVal, 255, Path);
+            try
+            {
+                Value = bool.Parse(RetVal.ToString());
+            }
+            catch
+            {
+                WriteState($"Error Read Bool in Key: {Key}");
+            }
+            
+            return Value;
         }
+        
+        public void Write(string Key, string Value, string Section = null) => WritePrivateProfileString(Section ?? EXE, Key, Value, Path);
 
-        public void DeleteKey(string Key, string Section = null)
-        {
-            Write(Key, null, Section ?? EXE);
-        }
+        public void DeleteKey(string Key, string Section = null) =>  Write(Key, null, Section ?? EXE);
 
-        public void DeleteSection(string Section = null)
-        {
-            Write(null, null, Section ?? EXE);
-        }
+        public void DeleteSection(string Section = null) =>  Write(null, null, Section ?? EXE);
 
-        public bool KeyExists(string Key, string Section = null)
-        {
-            return Read(Key, Section).Length > 0;
-        }
+        public bool KeyExists(string Key, string Section = null) => Read(Key, Section).Length > 0;
+        
     }
 }
